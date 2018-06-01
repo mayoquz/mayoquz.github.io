@@ -1,4 +1,39 @@
+$primary: #ff6700
+$dark: #222
+
 @import "_bootstrap"
+@import "./node_modules/owl.carousel/src/scss/owl.carousel"
+@import "./node_modules/owl.carousel/src/scss/owl.theme.default"
+
+%karusel-knopka-asos
+	position: absolute
+	top: 50%
+	transform: translateY(-50%)
+	background: black
+	width: 50px
+	height: 50px
+	border-radius: 50%
+	font-size: 24px
+	line-height: 50px
+	vertical-align: middle
+	color: #fff
+
+body
+	font-family: 'Source Sans Pro', sans-serif
+
+iframe
+	vertical-align: middle
+
+h2
+	&:after
+		content: ""
+		position: absolute
+		margin-top: 7px
+		left: 40%
+		display: block
+		height: 2px
+		width: 20%
+		background-color: $primary
 
 .contact-numbers
 	a
@@ -8,36 +43,338 @@
 			color: #fff
 			text-decoration: none
 
-.navbar-brand
-	width: 50px
-	padding: 15px
-	overflow: hidden
+.btn
+	text-transform: uppercase
+	border-radius: 2px
+	font-size: 13px
+	
+	&-primary
+		border-bottom: 2px solid #d35101
 
-	&:hover
-		img
-			margin-left: -18px
 
-	img
-		margin-left: -75px
-		transition: all 0.4s ease
 
 .navbar
+	position: absolute
+	width: 100%
+	z-index: 99
 	transition: all 0.4s ease
+
 	&:hover
 		background-color: #fff
 
-		a
-			color: orange
+		.navbar-nav .nav-link
+			color: $primary
 
-	li
-		padding: 25px 0;
-		&:hover
-			background-color: orange
+	@at-root 
+		.navbar-brand
+			width: 50px
+			padding-top: 15px
+			padding-bottom: 15px
+			overflow: hidden
 
-			a
+			&:hover
+				img
+					margin-left: -3px
+
+			img
+				margin-left: -59px
+				transition: all 0.4s ease
+
+	.navbar-nav
+		.nav-link
+			color: #fff
+			padding: 31px 15px
+			transition: all 0.4s ease
+
+			&:hover
+				background-color: $primary
 				color: #fff
 
-		a
-			padding: 20px 30px
-			color: #fff
+.owl-carousel
+	.owl-item
+		width: 100vw
+
+		.container, .row
+			height: 70vh
+
+	#mi1
+		background:
+			image: url('../img/a1-aksiya-min.jpg')
+			repeat: no-repeat
+			position: center
+			size: cover
+
+	#redmi5
+		background:
+			image: url('../img/redmi5-min.jpg')
+			repeat: no-repeat
+			position: center
+			size: cover
+
+	.owl-dots
+		position: absolute
+		bottom: 20px
+		left: 0
+		width: 100%
+		text-align: center
+
+		.owl-dot
+			width: 10px
+			height: 10px
+			margin: 0 5px
+			background-color: transparent
+			border: 1px solid gray
+			border-radius: 50%
+
+			&.active
+				background-color: $primary
+				border: 1px solid $primary
+
+	.owl-nav
+		button
+			outline: 0
 			transition: all 0.4s ease
+
+			.fas
+				transition: all 0.4s ease
+
+			&:hover
+				background-color: $primary
+				box-shadow: 0 0 15px rgba(255,255,255,0.8)
+
+				.fas
+					transform: rotate(360deg)
+
+			&.owl-prev
+				@extend %karusel-knopka-asos
+				left: 30px
+
+			&.owl-next
+				@extend %karusel-knopka-asos
+				right: 30px
+
+.tovar
+	position: relative
+	overflow: hidden
+
+	&:after
+		content: ""
+		background-color: rgba(0,0,0,0.5)
+		position: absolute
+		top: 0
+		right: 0
+		bottom: 0
+		left: 0
+		transition: all 1s ease
+		transform: translateX(-100%)
+
+	&:hover
+		.tovar-nomi
+			transform: translateY(-100%)
+
+		img
+			transform: rotate(45deg) scale(2.5)
+
+		.description
+			transform: translateX(0)
+
+		&:after
+			transform: translateX(0)
+
+	.tovar-nomi
+		position: absolute
+		z-index: 5
+		top: 0
+		left: 0
+		transition: all 0.2s ease
+		border-radius: 0 0 15px 0
+
+	img
+		transition: all 0.4s ease
+
+	h4
+		white-space: nowrap
+		overflow: hidden
+		text-overflow: ellipsis
+
+	.description
+		position: absolute
+		top: 0
+		left: 0
+		z-index: 5
+		width: 100%
+		transition: all 0.4s ease
+		transform: translateX(100%)
+	
+	.rating
+		position: relative
+		&:before
+			display: inline-block
+			content: "\f005\f005\f005\f005\f005"
+			font-family: "Font Awesome 5 Free"
+			font-weight: 900
+			color: #aaa
+
+		span
+			width: 20%
+			color: yellow
+			position: absolute
+			overflow: hidden
+			top: 0
+			left: 0
+
+			&:before
+				content: "\f005\f005\f005\f005\f005"
+				font-family: "Font Awesome 5 Free"
+				font-weight: 900
+
+.kategoriyalar
+	background-color: #efefef
+
+	&.animate
+		.kategoriya
+			animation:
+				play-state: running
+			&:hover
+				box-shadow: 0 0 15px 0 black
+				margin-top: -20px
+
+	.kategoriya
+		opacity: 0
+		margin-bottom: 40px
+		border-radius: 10px
+		box-shadow: 0 8px 6px -6px black
+		transition: all 0.6s ease
+		transform: translateY(0)
+		animation:
+			name: tepaga
+			duration: 1s
+			timing-function: ease
+			delay: 0.2s
+			iteration-count: 1
+			fill-mode: forwards
+			play-state: paused
+
+		h4 a
+			font-weight: bold
+			color: #333
+			transition: all 0.4s ease
+			&:hover
+				color: darkblue
+				text-decoration: none
+
+		&-img
+			height: 250px
+			border-radius: 10px
+			background:
+				image: url("https://mi-store.uz/wp-content/uploads/2018/04/smartphones-min-1-1.jpg")
+				repeat: no-repeat
+				position: center
+				size: cover
+
+.magazin
+	background:
+		image: url('https://mi-store.uz/wp-content/uploads/2018/02/photo_2018-02-01_16-04-39.jpg')
+		repeat: no-repeat
+		position: center
+		attachment: fixed
+		size: cover
+
+	span
+		display: inline-block
+		border: 1px solid $primary
+		color: $primary
+		border-radius: 20px
+		padding: 0 5px
+		font-size: 30px
+		transition: all 0.2s ease
+
+		&:hover
+			color: #fff
+			background-color: $primary
+			transform: rotate(360deg)
+			border-radius: 50%
+
+.bg-oq-shaffof
+	background-color: rgba(255,255,255,0.7)
+
+.site-footer
+	.navbar-brand
+		margin-top: -10px
+
+	h4
+		position: relative
+		&:after
+			content: ""
+			position: absolute
+			top: 35px
+			left: 0
+			width: 80px
+			height: 2px
+			background-color: #fff
+	p
+		color: #ddd
+
+	.social-icons
+		a 
+			display: inline-block
+			width: 50px
+			height: 50px
+			padding: 2px
+			margin-right: 15px
+			border: 1px solid $primary
+			border-radius: 50%
+			text-align: center
+			font-size: 1.7rem
+			transition: all 0.4s ease
+
+			&:hover
+				transform: rotate(360deg) scale(1.2)
+				color: #fff
+				border-color: #fff
+
+			i
+				vertical-align: middle
+
+	li a
+		color: #ddd
+		transition: all 0.4s ease
+		&:hover
+			text-decoration: none
+			color: $primary
+
+.copy
+	color: #ddd
+	background-color: #111
+
+#savatcha
+	position: fixed
+	bottom: 20px
+	right: 20px
+
+	.mahsulot-soni
+		position: absolute
+		top: -15px
+		left: -10px
+		padding: 5px 10px
+		color: #fff
+		background-color: violet
+		border-radius: 50%
+
+#savatchaModal
+	.modal-dialog
+		margin: 0
+		position: absolute
+		right: 0
+		top: 0
+
+		.modal-content
+			height: 100vh
+
+@keyframes tepaga
+	0%
+		opacity: 0
+		transform: translateY(100px)
+	100%
+		opacity: 1
+		transform: translateY(0)
